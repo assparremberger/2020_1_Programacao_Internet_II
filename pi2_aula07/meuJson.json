@@ -1,0 +1,12 @@
+{
+    "nome": "Maria",
+    "idade": 25,
+    "filhos": [
+        { "nome": "Pedro", "idade": 2 },
+        { "nome": "Laura", "idade": 5 }
+    ],
+    "altura": 1.75,
+    "casado": true,
+    "endereco": null
+
+}

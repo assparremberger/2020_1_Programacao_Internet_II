@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var http = new XMLHttpRequest();
+
+        http.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                var objJS = JSON.parse(this.responseText);
+                document.writeln("Nome: " + objJS.nome + "<br>Idade: " + objJS.idade);
+
+
+                document.writeln("<hr>" + JSON.stringify(objJS));
+
+                var texto = this.responseText;
+                document.writeln("<hr>" + texto);
+
+            }
+        };
+        http.open("GET", "meuJson.json", true);
+        http.send();
+    </script>
+</body>
+
+</html>

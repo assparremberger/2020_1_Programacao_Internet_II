@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos</title>
+</head>
+
+<body>
+
+    <script>
+        var http = new XMLHttpRequest();
+
+        http.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                var objJSON = JSON.parse(this.responseText);
+                //     document.writeln(JSON.stringify(objJSON));
+                var produtos = objJSON.produtos;
+
+                document.write("<table border='1'>");
+                document.write("<tr>");
+                document.write("<th>ID</th>");
+                document.write("<th>Nome</th>");
+                document.write("</tr>");
+
+                produtos.forEach(prod => {
+                    document.write("<tr>");
+                    document.write("<td>" + prod.id + "</td>");
+                    document.write("<td>" + prod.nome + "</td>");
+                    document.write("</tr>");
+                });
+
+                document.write("</table>");
+
+
+
+            }
+        };
+        http.open("GET", "servidor.php", true);
+        http.send();
+    </script>
+</body>
+
+</html>
