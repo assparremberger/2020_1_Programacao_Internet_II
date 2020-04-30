@@ -7,35 +7,26 @@
     <title>Lista de Produtos</title>
 </head>
 
-<body>
 
+<body>
     <script>
         var http = new XMLHttpRequest();
-
         http.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-
                 var objJSON = JSON.parse(this.responseText);
-                //     document.writeln(JSON.stringify(objJSON));
                 var produtos = objJSON.produtos;
-
                 document.write("<table border='1'>");
-                document.write("<tr>");
-                document.write("<th>ID</th>");
-                document.write("<th>Nome</th>");
-                document.write("</tr>");
-
+                document.write("   <tr>");
+                document.write("      <th>Id</th>");
+                document.write("      <th>Nome</th>");
+                document.write("   </tr>");
                 produtos.forEach(prod => {
-                    document.write("<tr>");
-                    document.write("<td>" + prod.id + "</td>");
-                    document.write("<td>" + prod.nome + "</td>");
-                    document.write("</tr>");
+                    document.write("   <tr>");
+                    document.write("      <td>" + prod.id + "</td>");
+                    document.write("      <td>" + prod.nome + "</td>");
+                    document.write("   </tr>");
                 });
-
                 document.write("</table>");
-
-
-
             }
         };
         http.open("GET", "servidor.php", true);

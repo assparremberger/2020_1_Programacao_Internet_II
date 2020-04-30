@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumindo XML</title>
+</head>
+
+<body>
+    <script>
+        var http = new XMLHttpRequest();
+        http.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.write("Dados: " + this.responseText + "<hr>");
+                var dadosXml = this.responseXML;
+                var produtos = dadosXml.getElementsByTagName("produto");
+                document.write("<table border='1'>");
+                document.write("   <tr>");
+                document.write("      <th>Id</th>");
+                document.write("      <th>Nome</th>");
+                document.write("      <th>Preço</th>");
+                document.write("   </tr>");
+                for (i = 0; i < produtos.length; i++) {
+                    document.write("   <tr>");
+                    var id = produtos[i].getElementsByTagName("id");
+                    var nome = produtos[i].getElementsByTagName("nome");
+                    var preco = produtos[i].getElementsByTagName("preco");
+                    document.write("      <td>" + id[0].childNodes[0].nodeValue + "</td>");
+                    document.write("      <td>" + nome[0].childNodes[0].nodeValue + "</td>");
+                    document.write("      <td>" + preco[0].childNodes[0].nodeValue + "</td>");
+                    document.write("   </tr>");
+                }
+                document.write("   </table>");
+            }
+        };
+        // ---->Para buscar os dados do banco de dados via PHP
+        http.open("GET", "servidor_xml.php", true);
+        // ---->Para buscar os dados em um arquivo XML
+        //      http.open("GET", "dados.xml", true);
+        http.send();
+    </script>
+</body>
+
+</html>
